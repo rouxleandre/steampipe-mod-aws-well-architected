@@ -6,7 +6,7 @@ locals {
 
 benchmark "well_architected_framework_sustainability" {
   title       = "Sustainability"
-  description = ""
+  description = "The Sustainability pillar includes understanding the impacts of the services used, quantifying impacts through the entire workload lifecycle, and applying design principles and best practices to reduce these impacts when building cloud workloads."
   children = [
     benchmark.well_architected_framework_sus01,
     benchmark.well_architected_framework_sus02,
