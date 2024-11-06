@@ -6,7 +6,7 @@ locals {
 
 benchmark "well_architected_framework_sec08" {
   title       = "SEC08 How do you protect your data at rest?"
-  description = "Protect your data at rest by implementing multiple controls, to reduce the risk of unauthorized access or mishandling."
+  description = ""
   children = [
     benchmark.well_architected_framework_sec08_bp01,
     benchmark.well_architected_framework_sec08_bp02,
@@ -19,7 +19,8 @@ benchmark "well_architected_framework_sec08" {
 
 benchmark "well_architected_framework_sec08_bp01" {
   title       = "BP01 Implement secure key management"
-  description = "By defining an encryption approach that includes the storage, rotation, and access control of keys, you can help provide protection for your content against unauthorized users and against unnecessary exposure to authorized users. AWS Key Management Service (AWS KMS) helps you manage encryption keys and integrates with many AWS services. This service provides durable, secure, and redundant storage for your AWS KMS keys. You can define your key aliases as well as key-level policies. The policies help you define key administrators as well as key users. Additionally, AWS CloudHSM is a cloud-based hardware security module (HSM) that allows you to easily generate and use your own encryption keys in the AWS Cloud. It helps you meet corporate, contractual, and regulatory compliance requirements for data security by using FIPS 140-2 Level 3 validated HSMs."
+  description = "Secure key management includes the storage, rotation, access control, and monitoring of key material required to secure data at rest for your workload."
+
   children = [
     aws_compliance.control.apigateway_stage_cache_encryption_at_rest_enabled,
     aws_compliance.control.backup_recovery_point_encryption_enabled,
@@ -30,13 +31,14 @@ benchmark "well_architected_framework_sec08_bp01" {
 
   tags = merge(local.well_architected_framework_sec08_common_tags, {
     choice_id = "sec_protect_data_rest_key_mgmt"
-    risk      = "high"
+    risk      = "UNANSWERED"
   })
 }
 
 benchmark "well_architected_framework_sec08_bp02" {
   title       = "BP02 Enforce encryption at rest"
-  description = "You should enforce the use of encryption for data at rest. Encryption maintains the confidentiality of sensitive data in the event of unauthorized access or accidental disclosure. Private data should be encrypted by default when at rest. Encryption helps maintain confidentiality of the data and provides an additional layer of protection against intentional or inadvertent data disclosure or exfiltration. Data that is encrypted cannot be read or accessed without first unencrypting the data. Any data stored unencrypted should be inventoried and controlled."
+  description = "You should enforce the use of encryption for data at rest. Encryption maintains the confidentiality of sensitive data in the event of unauthorized access or accidental disclosure."
+
   children = [
     aws_compliance.control.efs_file_system_encrypt_data_at_rest,
     aws_compliance.control.es_domain_encryption_at_rest_enabled,
@@ -60,13 +62,14 @@ benchmark "well_architected_framework_sec08_bp02" {
 
   tags = merge(local.well_architected_framework_sec08_common_tags, {
     choice_id = "sec_protect_data_rest_encrypt"
-    risk      = "high"
+    risk      = "UNANSWERED"
   })
 }
 
 benchmark "well_architected_framework_sec08_bp03" {
   title       = "BP03 Automate data at rest protection"
-  description = "Use automated tools to validate and enforce data at rest controls continuously, for example, verify that there are only encrypted storage resources. You can automate validation that all EBS volumes are encrypted using AWS Config Rules. AWS Security Hub can also verify several different controls through automated checks against security standards. Additionally, your AWS Config Rules can automatically remediate noncompliant resources."
+  description = "Use automation to validate and enforce data at rest controls.  Use automated scanning to detect misconfiguration of your data storage solutions, and perform remediations through automated programmatic response where possible.  Incorporate automation in your CI/CD processes to detect data storage misconfigurations before they are deployed to production."
+
   children = [
     aws_compliance.control.redshift_cluster_audit_logging_enabled,
     aws_compliance.control.redshift_cluster_kms_enabled,
@@ -78,13 +81,14 @@ benchmark "well_architected_framework_sec08_bp03" {
 
   tags = merge(local.well_architected_framework_sec08_common_tags, {
     choice_id = "sec_protect_data_rest_automate_protection"
-    risk      = "medium"
+    risk      = "UNANSWERED"
   })
 }
 
 benchmark "well_architected_framework_sec08_bp04" {
   title       = "BP04 Enforce access control"
-  description = "To help protect your data at rest, enforce access control using mechanisms, such as isolation and versioning, and apply the principle of least privilege. Prevent the granting of public access to your data. Verify that only authorized users can access data on a need-to-know basis. Protect your data with regular backups and versioning to prevent against intentional or inadvertent modification or deletion of data. Isolate critical data from other data to protect its confidentiality and data integrity."
+  description = "To help protect your data at rest, enforce access control using mechanisms, such as isolation and versioning, and apply the principle of least privilege. Prevent the granting of public access to your data."
+
   children = [
     aws_compliance.control.sns_topic_encrypted_at_rest,
     aws_compliance.control.s3_bucket_versioning_enabled,
@@ -93,6 +97,6 @@ benchmark "well_architected_framework_sec08_bp04" {
 
   tags = merge(local.well_architected_framework_sec08_common_tags, {
     choice_id = "sec_protect_data_rest_access_control"
-    risk      = "low"
+    risk      = "UNANSWERED"
   })
 }
