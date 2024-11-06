@@ -1,5 +1,16 @@
 # AWS Well-Architected Mod for Powerpipe
 
+## NOTE
+
+    Uses the AWS Well Architected 2024 July Specification.
+
+    This is work in progress, as benchmarks, mods and any additional changes are required to realign the checks to the latest spec.
+
+    Placeholders have been added to best practices that have not been mapped yet, have no mods or tooling available yet or simple cannot be
+    inferred from the workload.
+
+    Still deciding what actions make sense for the non-automatable checks.
+
 200+ checks covering AWS Well-Architected Framework defined best practices across all AWS regions.
 
 Run checks in a dashboard:
